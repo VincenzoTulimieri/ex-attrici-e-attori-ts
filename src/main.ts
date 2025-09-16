@@ -41,3 +41,26 @@ async function getActress(id: number): Promise<Actress | null> {
   }
 
 }
+
+async function getAllActress(): Promise<Actress[]> {
+  try {
+    const response = await fetch(`http://localhost:3333/actresses`)
+    if (!response.ok) {
+      throw new Error(`Errore HTTP ${response.status}`)
+    }
+    const data: unknown = await response.json()
+    if(!(data instanceof Array)){
+      throw new Error(`Formato dei dati non valido}`)
+    }
+    const validActress: Actress[] = data.filter((a)=> isActress(a))
+    return validActress
+
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Errore durante il recupero dei dati:', error)
+    } else {
+      console.error('Errore sconosciuto:', error)
+    }
+    return []
+  }
+}
