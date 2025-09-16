@@ -12,9 +12,3 @@ export type Actress = Person & {
     awards: string,
     nationality: 'American' | 'British' | 'Australian' | 'Israeli-American' | 'South African' | 'French' | 'Indian' | 'Israeli' | 'Spanish' | 'South Korean' | 'Chinese'
 }
-
-
-
-
-
-
